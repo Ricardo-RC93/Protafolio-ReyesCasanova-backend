@@ -1,23 +1,26 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const required = [
-  'DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_USER', 'DB_PASSWORD',
-  'JWT_SECRET', 'JWT_REFRESH_SECRET',
-];
+const hasDatabaseUrl = !!process.env.DATABASE_URL;
+const hasIndividualVars =
+  process.env.DB_HOST && process.env.DB_NAME && process.env.DB_USER && process.env.DB_PASSWORD;
 
-for (const key of required) {
-  if (!process.env[key]) {
-    throw new Error(`Missing required environment variable: ${key}`);
-  }
+if (!hasDatabaseUrl && !hasIndividualVars) {
+  throw new Error('Missing database config: set DATABASE_URL or DB_HOST/DB_NAME/DB_USER/DB_PASSWORD');
+}
+
+if (!process.env.JWT_SECRET) {
+  throw new Error('Missing required environment variable: JWT_SECRET');
 }
 
 export const env = {
   port: parseInt(process.env.PORT || '4000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
+  databaseUrl: process.env.DATABASE_URL,
+  dbSsl: process.env.DB_SSL === 'true',
   db: {
     host: process.env.DB_HOST!,
-    port: parseInt(process.env.DB_PORT!, 10),
+    port: parseInt(process.env.DB_PORT || '5432', 10),
     name: process.env.DB_NAME!,
     user: process.env.DB_USER!,
     password: process.env.DB_PASSWORD!,
@@ -25,7 +28,7 @@ export const env = {
   jwt: {
     secret: process.env.JWT_SECRET!,
     expiresIn: process.env.JWT_EXPIRES_IN || '15m',
-    refreshSecret: process.env.JWT_REFRESH_SECRET!,
+    refreshSecret: process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET!,
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   },
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
