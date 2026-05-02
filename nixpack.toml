@@ -1,0 +1,8 @@
+[phases.install]
+cmds = ["env -u NODE_ENV npm install"]
+
+[phases.build]
+cmds = ["env -u NODE_ENV npx prisma generate"]
+
+[start]
+cmd = "npx prisma db push --accept-data-loss && node src/seed.js && node src/app.js"
