@@ -28,8 +28,23 @@ app.use(cookieParser());
 app.use('/api', router);
 
 // Health check
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get('/health', async (_req, res) => {
+  try {
+    await sequelize.authenticate();
+    res.json({
+      status: 'ok',
+      api: 'online',
+      database: 'connected',
+      timestamp: new Date().toISOString(),
+    });
+  } catch {
+    res.status(503).json({
+      status: 'error',
+      api: 'online',
+      database: 'disconnected',
+      timestamp: new Date().toISOString(),
+    });
+  }
 });
 
 // Error handler (must be last)
