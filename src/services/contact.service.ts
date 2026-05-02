@@ -1,8 +1,13 @@
 import { ContactMessage } from '../models';
+import { sendContactEmail } from './email.service';
 
-export const create = (data: {
+export const create = async (data: {
   name: string; email: string; subject: string; message: string; ip_address?: string;
-}) => ContactMessage.create(data);
+}) => {
+  const item = await ContactMessage.create(data);
+  sendContactEmail(data).catch(() => {});
+  return item;
+};
 
 export const getAll = () =>
   ContactMessage.findAll({ order: [['createdAt', 'DESC']] });

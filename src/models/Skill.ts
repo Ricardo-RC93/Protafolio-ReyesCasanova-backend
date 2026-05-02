@@ -5,24 +5,28 @@ export interface SkillAttributes {
   id: string;
   name_es: string;
   name_en: string;
-  category: 'frontend' | 'backend' | 'tools' | 'soft' | 'database' | 'devops';
+  category: 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'tools' | 'soft';
   proficiency: number;
   icon_url?: string;
+  color?: string;
+  is_highlighted: boolean;
   sort_order: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-type SkillCreationAttributes = Optional<SkillAttributes, 'id' | 'sort_order'>;
+type SkillCreationAttributes = Optional<SkillAttributes, 'id' | 'sort_order' | 'is_highlighted'>;
 
 class Skill extends Model<SkillAttributes, SkillCreationAttributes>
   implements SkillAttributes {
   declare id: string;
   declare name_es: string;
   declare name_en: string;
-  declare category: 'frontend' | 'backend' | 'tools' | 'soft' | 'database' | 'devops';
+  declare category: 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'tools' | 'soft';
   declare proficiency: number;
   declare icon_url?: string;
+  declare color?: string;
+  declare is_highlighted: boolean;
   declare sort_order: number;
   declare readonly createdAt: Date;
   declare readonly updatedAt: Date;
@@ -38,7 +42,7 @@ Skill.init(
     name_es: { type: DataTypes.STRING(150), allowNull: false },
     name_en: { type: DataTypes.STRING(150), allowNull: false },
     category: {
-      type: DataTypes.ENUM('frontend', 'backend', 'tools', 'soft', 'database', 'devops'),
+      type: DataTypes.ENUM('frontend', 'backend', 'mobile', 'database', 'devops', 'tools', 'soft'),
       allowNull: false,
     },
     proficiency: {
@@ -47,6 +51,8 @@ Skill.init(
       validate: { min: 1, max: 100 },
     },
     icon_url: { type: DataTypes.STRING(500), allowNull: true },
+    color: { type: DataTypes.STRING(50), allowNull: true },
+    is_highlighted: { type: DataTypes.BOOLEAN, defaultValue: false },
     sort_order: { type: DataTypes.INTEGER, defaultValue: 0 },
   },
   {

@@ -6,8 +6,10 @@ import Skill from './Skill';
 import Experience from './Experience';
 import Education from './Education';
 import ContactMessage from './ContactMessage';
+import CV from './CV';
+import Service from './Service';
+import Testimonial from './Testimonial';
 
-// Associations
 Project.belongsToMany(Technology, {
   through: ProjectTechnology,
   foreignKey: 'project_id',
@@ -31,4 +33,7 @@ export {
   Experience,
   Education,
   ContactMessage,
+  CV,
+  Service,
+  Testimonial,
 };
