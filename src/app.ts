@@ -1,5 +1,6 @@
 import './config/env';
 import express from 'express';
+import path from 'path';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -18,6 +19,9 @@ app.use(cors({
   origin: env.frontendUrl,
   credentials: true,
 }));
+
+// Static files (uploaded images)
+app.use('/uploads', express.static(path.join(process.cwd(), 'public', 'uploads')));
 
 // Body parsing
 app.use(express.json());

@@ -9,11 +9,13 @@ import contactRoutes from './contact.routes';
 import cvRoutes from './cv.routes';
 import servicesRoutes from './services.routes';
 import testimonialsRoutes from './testimonials.routes';
+import uploadRoutes from './upload.routes';
 
 const router = Router();
 
 router.use('/auth', authRoutes);
 router.use('/projects', projectsRoutes);
+router.use('/upload', uploadRoutes);
 router.use('/skills', skillsRoutes);
 router.use('/experience', experienceRoutes);
 router.use('/education', educationRoutes);
