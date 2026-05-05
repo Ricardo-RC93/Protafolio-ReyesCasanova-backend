@@ -20,8 +20,11 @@ app.use(cors({
   credentials: true,
 }));
 
-// Static files (uploaded images)
-app.use('/uploads', express.static(path.join(process.cwd(), 'public', 'uploads')));
+// Static files (uploaded images) — allow cross-origin image loading
+app.use('/uploads', (_req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+}, express.static(path.join(process.cwd(), 'public', 'uploads')));
 
 // Body parsing
 app.use(express.json());
