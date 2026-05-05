@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "seed": "ts-node src/seeders/adminUser.seed.ts",
-    "seed:portfolio": "ts-node src/seeders/portfolio.seed.ts"
+    "seed:portfolio": "ts-node src/seeders/portfolio.seed.ts",
+    "reset:admin": "ts-node src/seeders/resetAdmin.seed.ts"
   },
   "dependencies": {
     "@types/nodemailer": "^8.0.0",
