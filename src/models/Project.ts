@@ -73,7 +73,7 @@ Project.init(
     description_en: { type: DataTypes.TEXT, allowNull: false },
     short_description_es: { type: DataTypes.STRING(300), allowNull: true },
     short_description_en: { type: DataTypes.STRING(300), allowNull: true },
-    image_url: { type: DataTypes.STRING(500), allowNull: true },
+    image_url: { type: DataTypes.TEXT, allowNull: true },
     images: { type: DataTypes.ARRAY(DataTypes.TEXT), allowNull: true, defaultValue: [] },
     live_url: { type: DataTypes.STRING(500), allowNull: true },
     repo_url: { type: DataTypes.STRING(500), allowNull: true },

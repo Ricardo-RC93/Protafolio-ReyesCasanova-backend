@@ -60,7 +60,7 @@ app.use(errorHandler);
 const start = async (): Promise<void> => {
   try {
     await connectDB();
-    await sequelize.sync({ alter: env.nodeEnv === 'development' });
+    await sequelize.sync({ alter: true });
     console.log('Database synced.');
     app.listen(env.port, () => {
       console.log(`Server running on http://localhost:${env.port}`);
