@@ -3,7 +3,7 @@ import { Project, Technology } from '../models';
 const publicWhere = { status: 'published' };
 
 export const getAllProjects = async (featured?: string) => {
-  const where: Record<string, unknown> = { status: 'published' };
+  const where: Record<string, unknown> = {};
   if (featured === 'true') where.featured = true;
   return Project.findAll({
     where,
