@@ -27,8 +27,8 @@ app.use('/uploads', (_req, res, next) => {
 }, express.static(path.join(process.cwd(), 'public', 'uploads')));
 
 // Body parsing
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '15mb' }));
+app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 app.use(cookieParser());
 
 // Routes
