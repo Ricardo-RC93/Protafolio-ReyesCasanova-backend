@@ -33,7 +33,7 @@ Technology.init(
       unique: true,
     },
     icon_url: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     color: {
