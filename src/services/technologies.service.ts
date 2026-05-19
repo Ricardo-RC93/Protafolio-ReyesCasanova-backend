@@ -17,7 +17,7 @@ export const create = (data: Partial<Technology>) =>
 export const update = async (id: string, data: Partial<Technology>) => {
   const item = await Technology.findByPk(id);
   if (!item) return null;
-  return item.update(sanitize(data as Record<string, unknown>));
+  return item.update(sanitize(data as Record<string, unknown>) as any);
 };
 
 export const remove = async (id: string) => {
