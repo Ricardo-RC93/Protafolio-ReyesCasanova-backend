@@ -9,6 +9,7 @@ import ContactMessage from './ContactMessage';
 import CV from './CV';
 import Service from './Service';
 import Testimonial from './Testimonial';
+import Profile from './Profile';
 
 Project.belongsToMany(Technology, {
   through: ProjectTechnology,
@@ -36,4 +37,5 @@ export {
   CV,
   Service,
   Testimonial,
+  Profile,
 };

@@ -10,6 +10,7 @@ import cvRoutes from './cv.routes';
 import servicesRoutes from './services.routes';
 import testimonialsRoutes from './testimonials.routes';
 import uploadRoutes from './upload.routes';
+import profileRoutes from './profile.routes';
 
 const router = Router();
 
@@ -24,5 +25,6 @@ router.use('/contact', contactRoutes);
 router.use('/cv', cvRoutes);
 router.use('/services', servicesRoutes);
 router.use('/testimonials', testimonialsRoutes);
+router.use('/profile', profileRoutes);
 
 export default router;
