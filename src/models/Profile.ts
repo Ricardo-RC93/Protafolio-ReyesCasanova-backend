@@ -8,6 +8,10 @@ export interface ProfileAttributes {
   role_en: string;
   bio_es: string;
   bio_en: string;
+  about_title_es: string;
+  about_title_en: string;
+  about_subtitle_es: string;
+  about_subtitle_en: string;
   location: string;
   available_for_work: boolean;
   github_url?: string;
@@ -34,6 +38,10 @@ class Profile extends Model<ProfileAttributes, ProfileCreationAttributes>
   declare role_en: string;
   declare bio_es: string;
   declare bio_en: string;
+  declare about_title_es: string;
+  declare about_title_en: string;
+  declare about_subtitle_es: string;
+  declare about_subtitle_en: string;
   declare location: string;
   declare available_for_work: boolean;
   declare github_url?: string;
@@ -55,6 +63,10 @@ Profile.init(
     role_en: { type: DataTypes.STRING(200), allowNull: false, defaultValue: '' },
     bio_es: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
     bio_en: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    about_title_es: { type: DataTypes.STRING(200), allowNull: false, defaultValue: 'Sobre mí' },
+    about_title_en: { type: DataTypes.STRING(200), allowNull: false, defaultValue: 'About Me' },
+    about_subtitle_es: { type: DataTypes.STRING(300), allowNull: false, defaultValue: '' },
+    about_subtitle_en: { type: DataTypes.STRING(300), allowNull: false, defaultValue: '' },
     location: { type: DataTypes.STRING(300), allowNull: false, defaultValue: '' },
     available_for_work: { type: DataTypes.BOOLEAN, defaultValue: true },
     github_url: { type: DataTypes.STRING(500), allowNull: true },
