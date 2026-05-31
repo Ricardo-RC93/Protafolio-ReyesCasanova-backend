@@ -22,6 +22,8 @@ export interface ProjectAttributes {
   challenges_en?: string;
   solutions_es?: string;
   solutions_en?: string;
+  apk_url?: string;
+  download_url?: string;
   featured: boolean;
   sort_order: number;
   status: 'published' | 'draft';
@@ -53,6 +55,8 @@ class Project extends Model<ProjectAttributes, ProjectCreationAttributes>
   declare challenges_en?: string;
   declare solutions_es?: string;
   declare solutions_en?: string;
+  declare apk_url?: string;
+  declare download_url?: string;
   declare featured: boolean;
   declare sort_order: number;
   declare status: 'published' | 'draft';
@@ -89,6 +93,8 @@ Project.init(
     challenges_en: { type: DataTypes.TEXT, allowNull: true },
     solutions_es: { type: DataTypes.TEXT, allowNull: true },
     solutions_en: { type: DataTypes.TEXT, allowNull: true },
+    apk_url: { type: DataTypes.TEXT, allowNull: true },
+    download_url: { type: DataTypes.TEXT, allowNull: true },
     featured: { type: DataTypes.BOOLEAN, defaultValue: false },
     sort_order: { type: DataTypes.INTEGER, defaultValue: 0 },
     status: {

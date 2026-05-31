@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({
+const uploadImage = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB
   fileFilter: (_req, file, cb) => {
@@ -27,11 +27,36 @@ const upload = multer({
   },
 });
 
-router.post('/', authMiddleware, upload.single('file'), (req: Request, res: Response) => {
+const uploadFile = multer({
+  storage,
+  limits: { fileSize: 150 * 1024 * 1024 }, // 150 MB
+  fileFilter: (_req, file, cb) => {
+    const allowed = [
+      'application/vnd.android.package-archive', // .apk
+      'application/zip',
+      'application/x-zip-compressed',
+      'application/octet-stream',
+      'application/x-rar-compressed',
+    ];
+    const ext = path.extname(file.originalname).toLowerCase();
+    const allowedExts = ['.apk', '.zip', '.rar', '.tar', '.gz', '.7z'];
+    if (allowed.includes(file.mimetype) || allowedExts.includes(ext)) cb(null, true);
+    else cb(new Error('Only APK and archive files are allowed'));
+  },
+});
+
+const apiBase = process.env.API_URL || 'https://api-protafolio.reyes.richsof.com';
+
+router.post('/', authMiddleware, uploadImage.single('file'), (req: Request, res: Response) => {
   if (!req.file) { res.status(400).json({ message: 'No file uploaded' }); return; }
-  const baseUrl = env.frontendUrl.replace('portafolio', 'api-protafolio');
-  const url = `${process.env.API_URL || `https://api-protafolio.reyes.richsof.com`}/uploads/${req.file.filename}`;
+  const url = `${apiBase}/uploads/${req.file.filename}`;
   res.json({ data: { url } });
+});
+
+router.post('/file', authMiddleware, uploadFile.single('file'), (req: Request, res: Response) => {
+  if (!req.file) { res.status(400).json({ message: 'No file uploaded' }); return; }
+  const url = `${apiBase}/uploads/${req.file.filename}`;
+  res.json({ data: { url, filename: req.file.originalname, size: req.file.size } });
 });
 
 export default router;
