@@ -155,7 +155,7 @@ const seedPortfolio = async (): Promise<void> => {
         author_company: 'TechLatam',
         content_es: 'Ricardo entregó nuestra plataforma web completa en tiempo récord. La calidad del código es excelente y siempre estuvo disponible para resolver dudas. Lo recomiendo sin dudar.',
         content_en: 'Ricardo delivered our entire web platform in record time. The code quality is excellent and he was always available to answer questions. I highly recommend him.',
-        rating: 5, sort_order: 1, is_active: true,
+        rating: 5, sort_order: 1, is_active: true, status: 'approved' as const,
       },
       {
         author_name: 'Sarah Johnson',
@@ -163,7 +163,7 @@ const seedPortfolio = async (): Promise<void> => {
         author_company: 'StartupNY',
         content_es: 'Trabajar con Ricardo fue una experiencia increíble. Transformó nuestras ideas en una app móvil funcional y bella. Su conocimiento técnico y comunicación son de primer nivel.',
         content_en: 'Working with Ricardo was an amazing experience. He transformed our ideas into a beautiful, functional mobile app. His technical knowledge and communication are top-notch.',
-        rating: 5, sort_order: 2, is_active: true,
+        rating: 5, sort_order: 2, is_active: true, status: 'approved' as const,
       },
       {
         author_name: 'Ana Rodríguez',
@@ -171,7 +171,7 @@ const seedPortfolio = async (): Promise<void> => {
         author_company: 'EcomStore',
         content_es: 'Nuestras ventas aumentaron un 40% después de que Ricardo rediseñó y optimizó nuestra tienda online. Entregó más de lo que prometió y siempre fue puntual.',
         content_en: 'Our sales increased 40% after Ricardo redesigned and optimized our online store. He delivered more than he promised and was always on time.',
-        rating: 5, sort_order: 3, is_active: true,
+        rating: 5, sort_order: 3, is_active: true, status: 'approved' as const,
       },
       {
         author_name: 'Miguel Torres',
@@ -179,7 +179,7 @@ const seedPortfolio = async (): Promise<void> => {
         author_company: 'FinTech Solutions',
         content_es: 'Ricardo construyó toda nuestra API backend desde cero. La arquitectura es limpia, segura y escalable. Un profesional excepcional que realmente entiende el negocio.',
         content_en: 'Ricardo built our entire backend API from scratch. The architecture is clean, secure and scalable. An exceptional professional who truly understands the business.',
-        rating: 5, sort_order: 4, is_active: true,
+        rating: 5, sort_order: 4, is_active: true, status: 'approved' as const,
       },
     ]);
     console.log('✓ Testimonials seeded');

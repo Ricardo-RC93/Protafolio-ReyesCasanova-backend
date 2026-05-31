@@ -7,9 +7,9 @@ export const getAll = () =>
       is_active: true,
       [Op.or]: [
         { status: 'approved' },
-        { status: null },
+        { status: { [Op.is]: null } },
       ],
-    },
+    } as any,
     order: [['sort_order', 'ASC']],
   });
 
