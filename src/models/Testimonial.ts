@@ -13,6 +13,8 @@ export interface TestimonialAttributes {
   rating: number;
   sort_order: number;
   is_active: boolean;
+  status: 'pending' | 'approved' | 'rejected';
+  linkedin_url?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -32,6 +34,8 @@ class Testimonial extends Model<TestimonialAttributes, TestimonialCreationAttrib
   declare rating: number;
   declare sort_order: number;
   declare is_active: boolean;
+  declare status: 'pending' | 'approved' | 'rejected';
+  declare linkedin_url?: string;
   declare readonly createdAt: Date;
   declare readonly updatedAt: Date;
 }
@@ -49,6 +53,11 @@ Testimonial.init(
     rating: { type: DataTypes.INTEGER, defaultValue: 5, validate: { min: 1, max: 5 } },
     sort_order: { type: DataTypes.INTEGER, defaultValue: 0 },
     is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
+    status: {
+      type: DataTypes.ENUM('pending', 'approved', 'rejected'),
+      defaultValue: 'approved',
+    },
+    linkedin_url: { type: DataTypes.STRING(500), allowNull: true },
   },
   { sequelize, tableName: 'testimonials', timestamps: true }
 );

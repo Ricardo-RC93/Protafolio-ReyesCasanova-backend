@@ -14,6 +14,7 @@ export interface ProfileAttributes {
   about_subtitle_en: string;
   location: string;
   available_for_work: boolean;
+  phone?: string;
   github_url?: string;
   linkedin_url?: string;
   website_url?: string;
@@ -44,6 +45,7 @@ class Profile extends Model<ProfileAttributes, ProfileCreationAttributes>
   declare about_subtitle_en: string;
   declare location: string;
   declare available_for_work: boolean;
+  declare phone?: string;
   declare github_url?: string;
   declare linkedin_url?: string;
   declare website_url?: string;
@@ -69,6 +71,7 @@ Profile.init(
     about_subtitle_en: { type: DataTypes.STRING(300), allowNull: false, defaultValue: '' },
     location: { type: DataTypes.STRING(300), allowNull: false, defaultValue: '' },
     available_for_work: { type: DataTypes.BOOLEAN, defaultValue: true },
+    phone: { type: DataTypes.STRING(50), allowNull: true },
     github_url: { type: DataTypes.STRING(500), allowNull: true },
     linkedin_url: { type: DataTypes.STRING(500), allowNull: true },
     website_url: { type: DataTypes.STRING(500), allowNull: true },
