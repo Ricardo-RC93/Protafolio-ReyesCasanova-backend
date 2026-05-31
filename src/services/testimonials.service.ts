@@ -1,8 +1,12 @@
+import { Op } from 'sequelize';
 import { Testimonial } from '../models';
 
 export const getAll = () =>
   Testimonial.findAll({
-    where: { is_active: true, status: 'approved' },
+    where: {
+      is_active: true,
+      status: { [Op.or]: ['approved', null] },
+    },
     order: [['sort_order', 'ASC']],
   });
 
